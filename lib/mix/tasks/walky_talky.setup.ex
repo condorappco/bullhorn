@@ -1,24 +1,24 @@
-defmodule Mix.Tasks.Flashy.Setup do
+defmodule Mix.Tasks.WalkyTalky.Setup do
   @moduledoc """
-  Installs and configures flashy and its dependencies.
+  Installs and configures walky_talky and its dependencies.
 
-      mix flashy.setup
+      mix walky_talky.setup
   """
-  @shortdoc "Installs and configures flashy and its dependencies."
+  @shortdoc "Installs and configures walky_talky and its dependencies."
 
   use Mix.Task
 
   alias Powertools.UI
 
   def run([]), do: run_setup()
-  def run(_), do: Mix.raise("Invalid arguments, expected: mix flashy.setup")
+  def run(_), do: Mix.raise("Invalid arguments, expected: mix walky_talky.setup")
 
   def run_setup do
     UI.title("setup", :top_bottom)
     color = UI.random_color(:command)
 
     UI.print([
-      {"Installs and configures flashy and its dependencies.", color},
+      {"Installs and configures walky_talky and its dependencies.", color},
       ""
     ])
 
@@ -45,14 +45,14 @@ defmodule Mix.Tasks.Flashy.Setup do
             "",
             {"No problem!", color},
             "",
-            {"Be sure to perform the setup tasks above before using flashy. 💅", color}
+            {"Be sure to perform the setup tasks above before using walky_talky. 💅", color}
           ])
       end
     else
       _ ->
         [
           "",
-          {"You're all set to start using flashy!", :green},
+          {"You're all set to start using walky_talky!", :green},
           "",
           [
             {"Be sure to use", :green},
@@ -61,7 +61,7 @@ defmodule Mix.Tasks.Flashy.Setup do
             {"put_flash!/4", :light_green},
             {"in your", :green}
           ],
-          {"controllers or LiveViews and flashy will take over", :green},
+          {"controllers or LiveViews and walky_talky will take over", :green},
           {"from there. 💅", :green}
         ]
         |> UI.print()
@@ -81,7 +81,7 @@ defmodule Mix.Tasks.Flashy.Setup do
     end
   end
 
-  def flashy_js do
+  def walky_talky_js do
     """
     const Flash = {
       autoCloseDelay() {

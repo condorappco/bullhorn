@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.Flashy do
+defmodule Mix.Tasks.WalkyTalky do
   use Mix.Task
 
   alias Powertools.UI
@@ -6,21 +6,21 @@ defmodule Mix.Tasks.Flashy do
 
   @shortdoc "Lists all available commands"
   @commands [
-    Mix.Tasks.Flashy.Setup
+    Mix.Tasks.WalkyTalky.Setup
   ]
   @table_spacing 2
 
   @moduledoc """
-  Prints Flashy tasks and their information.
+  Prints WalkyTalky tasks and their information.
 
-      mix flashy
+      mix walky_talky
   """
 
   @doc false
   def run(args) do
     case args do
       [] -> help()
-      _ -> Mix.raise("Invalid arguments, expected: mix flashy")
+      _ -> Mix.raise("Invalid arguments, expected: mix walky_talky")
     end
   end
 
@@ -31,8 +31,8 @@ defmodule Mix.Tasks.Flashy do
       Utils.calc_max_length(@commands |> Enum.map(fn module -> Mix.Task.task_name(module) end))
 
     UI.print([
-      UI.title_text("flashy", :top),
-      {"v#{Flashy.version()}", [color, :bright]},
+      UI.title_text("walky_talky", :top),
+      {"v#{WalkyTalky.version()}", [color, :bright]},
       "",
       {"The universal flash system for Phoenix and LiveView.", [color, :bright]},
       ""
@@ -47,7 +47,7 @@ defmodule Mix.Tasks.Flashy do
       "",
       [
         {"Learn more at", [color]},
-        {"https://condorapp.co/flashy", [color, :bright, :underline]},
+        {"https://condorapp.co/walky_talky", [color, :bright, :underline]},
         {"or on GitHub", [color]},
         {"@condorappco.", [color, :bright]}
       ]

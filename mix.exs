@@ -1,9 +1,11 @@
-defmodule Flashy.MixProject do
+defmodule WalkyTalky.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :flashy,
+      app: :walky_talky,
+      description:
+        "A @condorappco library to standardize Phoenix flash messages for live and \"dead\" views",
       version: "0.1.0",
       elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
@@ -19,11 +21,10 @@ defmodule Flashy.MixProject do
 
   defp deps do
     [
-      {:decor, path: "../decor"},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ecto, "~> 3.10"},
       {:phoenix_live_view, "~> 0.18.16"},
-      {:powertools, path: "../powertools"},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev}
+      {:powertools, github: "condorappco/powertools"}
     ]
   end
 end

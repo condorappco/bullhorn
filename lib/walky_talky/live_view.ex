@@ -1,39 +1,47 @@
-defmodule Flashy.LiveComponent do
-  use Phoenix.LiveComponent
+defmodule WalkyTalky.LiveView do
+  use Phoenix.LiveView
 
-  import Decor.Icon
+  import Elemental.Icon
 
   alias Phoenix.LiveView.JS
-  alias Decor.Utils
+  alias Elemental.Utils
 
-  def mount(socket) do
+  def mount(_params, session, %{assigns: %{flash: flash}} = socket) do
     transition =
       {"transition-all transform ease-in duration-200", Utils.default_transition_show(),
        Utils.default_transition_hide()}
 
-    {:ok, socket |> assign(:flashy_local, []) |> assign(:transition, transition)}
-  end
-
-  def update(assigns, %{assigns: %{flashy_local: flashy_local}} = socket) do
     socket =
       socket
-      |> assign(assigns)
-      |> assign(:flashy_local, Enum.concat(flashy_local, assigns.flashy || []))
+      |> assign(:transition, transition)
+      |> assign(:walky_talky_local, flash["walky_talky"] || [])
 
-    {:ok, socket}
+    {:ok, socket, layout: false}
   end
 
   def render(assigns) do
     ~H"""
-    <div aria-live="assertive" class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6">
+    <div
+      aria-live="assertive"
+      class="pointer-events-none fixed inset-0 flex items-end px-4 py-6 sm:items-start sm:p-6"
+    >
       <div class="pointer-events-none flex w-full flex-col items-center space-y-4 sm:items-end">
         <div
-          :for={%Flashy{id: id, kind: kind, title: title, message: message, auto_dismiss_delay: auto_dismiss_delay} <- @flashy_local}
-          id={"flashy-#{id}"}
-          phx-hook="Flashy"
+          :for={
+            %WalkyTalky{
+              id: id,
+              kind: kind,
+              title: title,
+              message: message,
+              auto_dismiss_delay: auto_dismiss_delay
+            } <- @walky_talky_local
+          }
+          id={"walky-talky-#{id}"}
+          phx-hook="WalkyTalky"
           data-auto-dismiss-delay={auto_dismiss_delay}
-          data-dismiss-handler={JS.hide(to: "#flashy-#{id}", transition: @transition) |> JS.push("dismiss")}
-          phx-target={@myself}
+          data-dismiss-handler={
+            JS.hide(to: "#walky-talky-#{id}", transition: @transition) |> JS.push("dismiss")
+          }
           phx-value-id={id}
           class={"pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-#{color(kind)}-300 bg-#{color(kind)}-10 shadow-md ring-1 ring-#{color(kind)}-300"}
           role="alert"
@@ -51,8 +59,9 @@ defmodule Flashy.LiveComponent do
               </div>
               <div class="ml-4 flex flex-shrink-0">
                 <button
-                  phx-click={JS.hide(to: "#flashy-#{id}", transition: @transition) |> JS.push("dismiss")}
-                  phx-target={@myself}
+                  phx-click={
+                    JS.hide(to: "#walky-talky-#{id}", transition: @transition) |> JS.push("dismiss")
+                  }
                   phx-value-id={id}
                   type="button"
                   class={"inline-flex rounded-md text-#{color}-400 hover:text-#{color}-600 focus:outline-none focus:ring-2 focus:ring-#{color}-600 focus:ring-offset-2"}
@@ -81,9 +90,13 @@ defmodule Flashy.LiveComponent do
   defp icon_name("warning"), do: "exclamation_triangle"
   defp icon_name(_), do: nil
 
-  def handle_event("dismiss", %{"id" => id}, %{assigns: %{flashy_local: flashy_local}} = socket) do
-    flashy_local = Enum.reject(flashy_local, fn f -> f.id == id end)
+  def handle_event(
+        "dismiss",
+        %{"id" => id},
+        %{assigns: %{walky_talky_local: walky_talky_local}} = socket
+      ) do
+    walky_talky_local = Enum.reject(walky_talky_local, fn f -> f.id == id end)
 
-    {:noreply, socket |> assign(:flashy_local, flashy_local)}
+    {:noreply, socket |> assign(:walky_talky_local, walky_talky_local)}
   end
 end

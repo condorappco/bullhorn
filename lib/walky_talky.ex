@@ -1,6 +1,6 @@
-defmodule Flashy do
+defmodule WalkyTalky do
   @moduledoc """
-  Documentation for `Flashy`.
+  Documentation for `WalkyTalky`.
   """
   import Phoenix.LiveView
 
@@ -9,7 +9,7 @@ defmodule Flashy do
   @enforce_keys [:id, :kind, :message, :title, :auto_dismiss_delay]
   defstruct [:id, :kind, :title, :message, :auto_dismiss_delay]
 
-  @typedoc "A flashy flash"
+  @typedoc "A walky_talky flash"
   @type t() :: %__MODULE__{
           id: String.t(),
           kind: String.t(),
@@ -44,7 +44,7 @@ defmodule Flashy do
     quote do
       def put_flash!(socket, kind, message, opts \\ []) do
         socket
-        |> put_flash(:flashy, [Flashy.build(kind, message, opts)])
+        |> put_flash(:walky_talky, [WalkyTalky.build(kind, message, opts)])
       end
     end
   end
@@ -52,7 +52,7 @@ defmodule Flashy do
   def live_component do
     quote do
       def put_flash!(socket, kind, message, opts \\ []) do
-        send(self(), {:put_flash, :flashy, [Flashy.build(kind, message, opts)]})
+        send(self(), {:put_flash, :walky_talky, [WalkyTalky.build(kind, message, opts)]})
         socket
       end
     end
@@ -62,7 +62,7 @@ defmodule Flashy do
     quote do
       def put_flash!(conn, kind, message, opts \\ []) do
         conn
-        |> Phoenix.Controller.put_flash(:flashy, [Flashy.build(kind, message, opts)])
+        |> Phoenix.Controller.put_flash(:walky_talky, [WalkyTalky.build(kind, message, opts)])
       end
     end
   end
