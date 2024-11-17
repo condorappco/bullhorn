@@ -22,9 +22,10 @@ defmodule WalkyTalky.MixProject do
   defp deps do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
-      {:ecto, "~> 3.10"},
-      {:phoenix_live_view, "~> 0.18.16"},
-      {:powertools, github: "condorappco/powertools"}
+      {:ecto, "~> 3.12"},
+      {:phoenix_live_view, "~> 0.20"},
+      {:powertools, github: "condorappco/powertools"},
+      {:elemental, github: "condorappco/elemental"}
     ]
   end
 end
