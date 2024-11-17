@@ -1,7 +1,9 @@
 defmodule WalkyTalky.LiveComponent do
+  @moduledoc false
+
   use Phoenix.LiveComponent
 
-  import Elemental.Icon
+  import Elemental.Component.Icon
 
   alias Phoenix.LiveView.JS
   alias Elemental.Utils

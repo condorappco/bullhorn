@@ -1,12 +1,12 @@
 defmodule WalkyTalky.LiveView do
   use Phoenix.LiveView
 
-  import Elemental.Icon
+  import Elemental.Component.Icon
 
   alias Phoenix.LiveView.JS
   alias Elemental.Utils
 
-  def mount(_params, session, %{assigns: %{flash: flash}} = socket) do
+  def mount(_params, _session, %{assigns: %{flash: flash}} = socket) do
     transition =
       {"transition-all transform ease-in duration-200", Utils.default_transition_show(),
        Utils.default_transition_hide()}
