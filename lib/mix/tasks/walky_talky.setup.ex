@@ -45,7 +45,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
             "",
             {"No problem!", color},
             "",
-            {"Be sure to perform the setup tasks above before using walky_talky. 💅", color}
+            {"Be sure to perform the setup tasks above before using walky_talky. 🔉", color}
           ])
       end
     else
@@ -62,7 +62,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
             {"in your", :green}
           ],
           {"controllers or LiveViews and walky_talky will take over", :green},
-          {"from there. 💅", :green}
+          {"from there. 🔉", :green}
         ]
         |> UI.print()
     end
@@ -83,7 +83,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
 
   def walky_talky_js do
     """
-    const Flash = {
+    const WalkyTalky = {
       autoCloseDelay() {
         return Number(this.el.dataset.autoCloseDelay) || 0;
       },
@@ -99,7 +99,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
       },
     };
 
-    export { Flash };
+    export { WalkyTalky };
     """
   end
 end
