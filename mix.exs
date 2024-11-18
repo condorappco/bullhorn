@@ -23,9 +23,10 @@ defmodule WalkyTalky.MixProject do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ecto, "~> 3.12"},
+      {:elemental, github: "condorappco/elemental"},
       {:phoenix_live_view, "~> 0.20"},
       {:powertools, github: "condorappco/powertools"},
-      {:elemental, github: "condorappco/elemental"}
+      {:typed_struct, "~> 0.3"}
     ]
   end
 end
