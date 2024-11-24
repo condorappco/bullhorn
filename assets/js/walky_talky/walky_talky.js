@@ -1,15 +1,15 @@
 const WalkyTalky = {
-  autoCloseDelay() {
-    return Number(this.el.dataset.autoCloseDelay) || 0;
+  autoDismissDelay() {
+    return Number(this.el.dataset.autoDismissDelay) || 0;
   },
   dismissHandler() {
     return this.el.dataset.dismissHandler;
   },
   mounted() {
-    if (this.autoCloseDelay() > 0) {
+    if (this.autoDismissDelay() > 0) {
       setTimeout(() => {
         liveSocket.execJS(this.el, this.dismissHandler());
-      }, this.autoCloseDelay());
+      }, this.autoDismissDelay());
     }
   },
 };
