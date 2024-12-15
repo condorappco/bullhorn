@@ -1,4 +1,4 @@
-const WalkyTalky = {
+const Bullhorn = {
   autoDismissDelay() {
     return Number(this.el.dataset.autoDismissDelay) || 0;
   },
@@ -14,4 +14,4 @@ const WalkyTalky = {
   },
 };
 
-export { WalkyTalky };
+export { Bullhorn };

@@ -1,4 +1,4 @@
-defmodule WalkyTalky.Flash do
+defmodule Bullhorn.Flash do
   @moduledoc """
   A struct representing a flash message.
   """
@@ -14,7 +14,7 @@ defmodule WalkyTalky.Flash do
     field :auto_dismiss_delay, non_neg_integer(), enforce: true
   end
 
-  @spec build(atom(), String.t(), Keyword.t()) :: WalkyTalky.Flash.t()
+  @spec build(atom(), String.t(), Keyword.t()) :: Bullhorn.Flash.t()
   def build(kind, message, opts \\ []) do
     %__MODULE__{
       id: Ecto.UUID.generate(),

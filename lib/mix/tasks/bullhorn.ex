@@ -1,4 +1,4 @@
-defmodule Mix.Tasks.WalkyTalky do
+defmodule Mix.Tasks.Bullhorn do
   use Mix.Task
 
   alias Powertools.UI
@@ -6,21 +6,21 @@ defmodule Mix.Tasks.WalkyTalky do
 
   @shortdoc "Lists all available commands"
   @commands [
-    Mix.Tasks.WalkyTalky.Setup
+    Mix.Tasks.Bullhorn.Setup
   ]
   @table_spacing 2
 
   @moduledoc """
-  Prints WalkyTalky tasks and their information.
+  Prints Bullhorn tasks and their information.
 
-      mix walky_talky
+      mix bullhorn
   """
 
   @doc false
   def run(args) do
     case args do
       [] -> help()
-      _ -> Mix.raise("Invalid arguments, expected: mix walky_talky")
+      _ -> Mix.raise("Invalid arguments, expected: mix bullhorn")
     end
   end
 
@@ -31,8 +31,8 @@ defmodule Mix.Tasks.WalkyTalky do
       Utils.calc_max_length(@commands |> Enum.map(fn module -> Mix.Task.task_name(module) end))
 
     UI.print([
-      UI.title_text("walky_talky", :top),
-      {"v#{WalkyTalky.version()}", [color, :bright]},
+      UI.title_text("bullhorn", :top),
+      {"v#{Bullhorn.version()}", [color, :bright]},
       "",
       {"The universal flash system for Phoenix and LiveView.", [color, :bright]},
       ""
@@ -47,7 +47,7 @@ defmodule Mix.Tasks.WalkyTalky do
       "",
       [
         {"Learn more at", [color]},
-        {"https://condorapp.co/walky_talky", [color, :bright, :underline]},
+        {"https://condorapp.co/bullhorn", [color, :bright, :underline]},
         {"or on GitHub", [color]},
         {"@condorappco.", [color, :bright]}
       ]

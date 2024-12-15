@@ -1,12 +1,13 @@
-defmodule WalkyTalky.FlashComponent do
+defmodule Bullhorn.FlashComponent do
   @moduledoc false
 
   use Phoenix.LiveComponent
 
+  import Twix
   import Phoenix.HTML
   import Elemental.Component.Icon
 
-  alias WalkyTalky.Flash
+  alias Bullhorn.Flash
   alias Phoenix.LiveView.JS
   alias Elemental.Utils
 
@@ -46,25 +47,24 @@ defmodule WalkyTalky.FlashComponent do
             } <- @local_flashes
           }
           id={"flash-#{id}"}
-          phx-hook="WalkyTalky"
+          phx-hook="Bullhorn"
           data-auto-dismiss-delay={auto_dismiss_delay}
           data-dismiss-handler={
             JS.hide(to: "#flash-#{id}", transition: @transition) |> JS.push("dismiss")
           }
           phx-target={@myself}
           phx-value-id={"flash-#{id}"}
-          class={"pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-#{color(kind)}-300 bg-#{color(kind)}-10 shadow-md ring-1 ring-#{color(kind)}-300"}
+          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-cyan-300 bg-cyan-500 shadow-md ring-1 ring-cyan-300"
           role="alert"
         >
           <% id = "flash-#{id}" %>
-          <% color = color(kind) %>
           <% icon = icon_name(kind) %>
-          <div class="p-4">
-            <div class="flex items-start">
+          <div class="p-4 z-10">
+            <div class="flex items-start z-10">
               <div :if={icon} class="flex-shrink-0 mr-3">
-                <.icon name={icon} class={"w-6 h-6 text-#{color}-600"} />
+                <.icon name={icon} class="w-6 h-6 text-cyan-600" />
               </div>
-              <div class={"w-0 flex-1 text-#{color}-600"}>
+              <div class="w-0 flex-1 text-cyan-600">
                 <p :if={title} class="font-bold font-alt"><%= title %></p>
                 <p class="mt-1 text-sm font-default"><%= raw(message) %></p>
               </div>
@@ -74,10 +74,10 @@ defmodule WalkyTalky.FlashComponent do
                   phx-target={@myself}
                   phx-value-id={id}
                   type="button"
-                  class={"inline-flex rounded-md text-#{color}-400 hover:text-#{color}-600 focus:outline-none focus:ring-2 focus:ring-#{color}-600 focus:ring-offset-2"}
+                  class={tw(["inline-flex text-black dark:text-white"])}
                 >
                   <span class="sr-only">Close</span>
-                  <.icon name="x_mark" class={"w-5 h-5 text-#{color}-400"} />
+                  <.icon name="x_mark" class={tw(["w-5 h-5 text-gray-700 dark:text-gray-300"])} />
                 </button>
               </div>
             </div>
@@ -87,12 +87,6 @@ defmodule WalkyTalky.FlashComponent do
     </div>
     """
   end
-
-  defp color("error"), do: "red"
-  defp color("success"), do: "green"
-  defp color("info"), do: "purple"
-  defp color("warning"), do: "orange"
-  defp color(_), do: "gray"
 
   defp icon_name("error"), do: "x_circle"
   defp icon_name("success"), do: "check_circle"

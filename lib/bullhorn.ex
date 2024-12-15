@@ -1,9 +1,9 @@
-defmodule WalkyTalky do
+defmodule Bullhorn do
   @moduledoc false
 
   import Phoenix.LiveView
 
-  alias WalkyTalky.Flash
+  alias Bullhorn.Flash
 
   @version Mix.Project.config()[:version]
 

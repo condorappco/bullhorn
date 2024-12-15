@@ -1,9 +1,9 @@
-defmodule WalkyTalky.MixProject do
+defmodule Bullhorn.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :walky_talky,
+      app: :bullhorn,
       description:
         "A @condorappco library to standardize Phoenix flash messages for live and \"dead\" views",
       version: "0.1.0",
@@ -23,9 +23,11 @@ defmodule WalkyTalky.MixProject do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ecto, "~> 3.12"},
-      {:elemental, github: "condorappco/elemental"},
+      # {:elemental, github: "condorappco/elemental"},
+      {:elemental, path: "../elemental"},
       {:phoenix_live_view, "~> 0.20"},
-      {:powertools, github: "condorappco/powertools"},
+      # {:powertools, github: "condorappco/powertools"},
+      {:powertools, path: "../powertools"},
       {:typed_struct, "~> 0.3"}
     ]
   end

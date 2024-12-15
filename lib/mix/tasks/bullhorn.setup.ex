@@ -1,24 +1,24 @@
-defmodule Mix.Tasks.WalkyTalky.Setup do
+defmodule Mix.Tasks.Bullhorn.Setup do
   @moduledoc """
-  Installs and configures walky_talky and its dependencies.
+  Installs and configures bullhorn and its dependencies.
 
-      mix walky_talky.setup
+      mix bullhorn.setup
   """
-  @shortdoc "Installs and configures walky_talky and its dependencies."
+  @shortdoc "Installs and configures bullhorn and its dependencies."
 
   use Mix.Task
 
   alias Powertools.UI
 
   def run([]), do: run_setup()
-  def run(_), do: Mix.raise("Invalid arguments, expected: mix walky_talky.setup")
+  def run(_), do: Mix.raise("Invalid arguments, expected: mix bullhorn.setup")
 
   def run_setup do
     UI.title("setup", :top_bottom)
     color = UI.random_color(:command)
 
     UI.print([
-      {"Installs and configures walky_talky and its dependencies.", color},
+      {"Installs and configures bullhorn and its dependencies.", color},
       ""
     ])
 
@@ -45,14 +45,14 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
             "",
             {"No problem!", color},
             "",
-            {"Be sure to perform the setup tasks above before using walky_talky. 🔉", color}
+            {"Be sure to perform the setup tasks above before using bullhorn. 🔉", color}
           ])
       end
     else
       _ ->
         [
           "",
-          {"You're all set to start using walky_talky!", :green},
+          {"You're all set to start using bullhorn!", :green},
           "",
           [
             {"Be sure to use", :green},
@@ -61,7 +61,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
             {"put_flash!/4", :light_green},
             {"in your", :green}
           ],
-          {"controllers or LiveViews and walky_talky will take over", :green},
+          {"controllers or LiveViews and bullhorn will take over", :green},
           {"from there. 🔉", :green}
         ]
         |> UI.print()
@@ -81,9 +81,9 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
     end
   end
 
-  def walky_talky_js do
+  def bullhorn_js do
     """
-    const WalkyTalky = {
+    const Bullhorn = {
       autoCloseDelay() {
         return Number(this.el.dataset.autoCloseDelay) || 0;
       },
@@ -99,7 +99,7 @@ defmodule Mix.Tasks.WalkyTalky.Setup do
       },
     };
 
-    export { WalkyTalky };
+    export { Bullhorn };
     """
   end
 end
