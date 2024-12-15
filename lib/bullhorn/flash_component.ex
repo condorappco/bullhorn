@@ -32,7 +32,11 @@ defmodule Bullhorn.FlashComponent do
     ~H"""
     <div
       aria-live="assertive"
-      class="fixed inset-0 z-50 flex items-end px-4 py-6 pointer-events-none sm:items-start sm:p-6"
+      class={
+        tw([
+          "fixed inset-0 z-50 flex items-end pointer-events-none sm:items-start"
+        ])
+      }
       id={@id}
     >
       <div class="flex flex-col items-center w-full space-y-4 sm:items-end">
@@ -48,13 +52,21 @@ defmodule Bullhorn.FlashComponent do
           }
           id={"flash-#{id}"}
           phx-hook="Bullhorn"
+          phx-mounted={
+            JS.transition({"ease-out duration-300", "scale-105 opacity-0", "scale-100 opacity-100"},
+              time: 300
+            )
+          }
           data-auto-dismiss-delay={auto_dismiss_delay}
           data-dismiss-handler={
-            JS.hide(to: "#flash-#{id}", transition: @transition) |> JS.push("dismiss")
+            JS.transition({"ease-in duration-300", "scale-100 opacity-100", "scale-95 opacity-0"},
+              time: 300
+            )
+            |> JS.push("dismiss")
           }
           phx-target={@myself}
           phx-value-id={"flash-#{id}"}
-          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-cyan-300 bg-cyan-500 shadow-md ring-1 ring-cyan-300"
+          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-secondary-dark bg-secondary shadow-md ring-1 ring-secondary-dark"
           role="alert"
         >
           <% id = "flash-#{id}" %>
@@ -65,8 +77,8 @@ defmodule Bullhorn.FlashComponent do
                 <.icon name={icon} class="w-6 h-6 text-cyan-600" />
               </div>
               <div class="w-0 flex-1 text-cyan-600">
-                <p :if={title} class="font-bold font-alt"><%= title %></p>
-                <p class="mt-1 text-sm font-default"><%= raw(message) %></p>
+                <p :if={title} class="font-bold font-alt">{title}</p>
+                <p class="mt-1 text-sm font-default">{raw(message)}</p>
               </div>
               <div class="flex flex-shrink-0 ml-4">
                 <button
