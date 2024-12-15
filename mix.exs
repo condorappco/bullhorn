@@ -25,7 +25,7 @@ defmodule Bullhorn.MixProject do
       {:ecto, "~> 3.12"},
       # {:elemental, github: "condorappco/elemental"},
       {:elemental, path: "../elemental"},
-      {:phoenix_live_view, "~> 0.20"},
+      {:phoenix_live_view, "~> 1.0"},
       # {:powertools, github: "condorappco/powertools"},
       {:powertools, path: "../powertools"},
       {:typed_struct, "~> 0.3"}
