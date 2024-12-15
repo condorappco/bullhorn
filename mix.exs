@@ -7,7 +7,7 @@ defmodule Bullhorn.MixProject do
       description:
         "A @condorappco library to standardize Phoenix flash messages for live and \"dead\" views",
       version: "0.1.0",
-      elixir: "~> 1.14",
+      elixir: "~> 1.17",
       start_permanent: Mix.env() == :prod,
       deps: deps()
     ]
@@ -23,11 +23,9 @@ defmodule Bullhorn.MixProject do
     [
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:ecto, "~> 3.12"},
-      # {:elemental, github: "condorappco/elemental"},
-      {:elemental, path: "../elemental"},
+      {:elemental, github: "condorappco/elemental"},
       {:phoenix_live_view, "~> 1.0"},
-      # {:powertools, github: "condorappco/powertools"},
-      {:powertools, path: "../powertools"},
+      {:powertools, github: "condorappco/powertools"},
       {:typed_struct, "~> 0.3"}
     ]
   end
