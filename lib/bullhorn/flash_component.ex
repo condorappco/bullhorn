@@ -34,7 +34,7 @@ defmodule Bullhorn.FlashComponent do
       aria-live="assertive"
       class={
         tw([
-          "fixed inset-0 z-50 flex items-end pointer-events-none sm:items-start"
+          "fixed inset-4 z-50 flex items-end pointer-events-none sm:items-start"
         ])
       }
       id={@id}
@@ -66,17 +66,17 @@ defmodule Bullhorn.FlashComponent do
           }
           phx-target={@myself}
           phx-value-id={"flash-#{id}"}
-          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-secondary-dark bg-secondary shadow-md ring-1 ring-secondary-dark"
+          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-accent-dark bg-accent shadow-md ring-1 ring-accent-dark"
           role="alert"
         >
           <% id = "flash-#{id}" %>
           <% icon = icon_name(kind) %>
-          <div class="p-4 z-10">
-            <div class="flex items-start z-10">
+          <div class="z-10">
+            <div class="flex items-start m-4 z-10">
               <div :if={icon} class="flex-shrink-0 mr-3">
-                <.icon name={icon} class="w-6 h-6 text-cyan-600" />
+                <.icon name={icon} class="w-6 h-6 text-accent-text" />
               </div>
-              <div class="w-0 flex-1 text-cyan-600">
+              <div class="w-0 flex-1 text-accent-text">
                 <p :if={title} class="font-bold font-alt">{title}</p>
                 <p class="mt-1 text-sm font-default">{raw(message)}</p>
               </div>
@@ -86,13 +86,14 @@ defmodule Bullhorn.FlashComponent do
                   phx-target={@myself}
                   phx-value-id={id}
                   type="button"
-                  class={tw(["inline-flex text-black dark:text-white"])}
+                  class={tw(["inline-flex text-accent-text"])}
                 >
                   <span class="sr-only">Close</span>
-                  <.icon name="x_mark" class={tw(["w-5 h-5 text-gray-700 dark:text-gray-300"])} />
+                  <.icon name="x_mark" class={tw(["w-5 h-5 text-accent-text-light"])} />
                 </button>
               </div>
             </div>
+            <div class="progress-bar bg-accent-dark h-2 w-full transition-all ease-linear"/>
           </div>
         </div>
       </div>
