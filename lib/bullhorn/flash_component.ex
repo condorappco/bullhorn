@@ -66,7 +66,7 @@ defmodule Bullhorn.FlashComponent do
           }
           phx-target={@myself}
           phx-value-id={"flash-#{id}"}
-          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-accent-dark bg-accent shadow-md ring-1 ring-accent-dark"
+          class="z-10 pointer-events-auto w-full max-w-sm overflow-hidden rounded-lg border-accent-dark bg-accent-base shadow-md ring-1 ring-accent-dark"
           role="alert"
         >
           <% id = "flash-#{id}" %>

@@ -21,7 +21,7 @@ defmodule Bullhorn.Flash do
       kind: to_string(kind),
       message: message,
       title: opts[:title],
-      auto_dismiss_delay: opts[:auto_dismiss_delay] || 5000
+      auto_dismiss_delay: opts[:auto_dismiss_delay] || 7500
     }
   end
 
